@@ -8,6 +8,7 @@ import { SlArrowDown } from "react-icons/sl";
 import Dropdown from "./dropdown";
 import Notification from "./notification";
 import Mmessage from "./message";
+import Center from "../components/center";
 
 const TopBar = () => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
@@ -28,8 +29,8 @@ const TopBar = () => {
 
   return (
     <>
-      <div className="bg-Clay h-28 w-screen text-primary  ">
-        <div className="flex p-5 justify-between">
+      <div className="bg-Clay h-28 w-screen text-primary sticky top-0  ">
+        <div className="flex p-4 justify-between">
           <div className="flex">
             <CiSearch className="mt-7 w-10 h-7 " />
 
@@ -83,8 +84,10 @@ const TopBar = () => {
             </div>
           </div>
         </div>
+        <div className="">
+          <Center />
+        </div>
       </div>
-
     </>
   );
 };

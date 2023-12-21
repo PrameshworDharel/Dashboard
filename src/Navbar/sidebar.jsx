@@ -8,13 +8,13 @@ import { IoPersonOutline } from "react-icons/io5";
 const SideBar = () => {
   return (
     <>
-      <div className="bg-secondary w-[300px] p-5    top-0 left-0 ">
-        <div className="flex ">
+      <div className="bg-secondary w-[300px]   ">
+        <div className="flex sticky top-0 pt-[40px] overflow-auto bg-secondary">
           <FaReact className="h-10 w-10" />
           <h1 className="font-bold text-3xl">TailAdmin</h1>
         </div>
-        <div className="mt-20 ">
-          <h1 className="font-bold text-Mirage">MENU</h1>
+        <div className="mt-20  ">
+          <h1 className="font-bold text-Mirage ml-5 ">MENU</h1>
         </div>
         <div className="p-4  ">
           <button className="flex hover:bg-shadow px-2 py-2  rounded-sm ">

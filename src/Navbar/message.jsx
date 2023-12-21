@@ -34,7 +34,7 @@ const Mmessage = () => {
         </div>
         {ArrayCard.map((message) => (
           <div className="hover:bg-tertiary shadow-sm ">
-            <button className="mt-5 ml-5 mr-5">
+            <button className="mt-2 ml-5 mr-5">
               <h1 className="font-bold">{message.name}</h1>
               <h1 className="font-bold">{message.title}</h1>
 

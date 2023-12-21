@@ -1,10 +1,10 @@
 import React, { useState } from "react";
+import moment from "moment/moment";
 
 const CardArray = [
   {
     title: "Golden Night with Laure & Dong",
     date: "August 28, 2023",
-    children: [],
   },
   {
     title: "The Weeknd Experience: Live with The Weeknd",
@@ -32,13 +32,14 @@ const Notification = () => {
           <h1 className="font-bold">Notification</h1>
           <hr className=" w-[100%] mt-5"></hr>
         </div>
-        
+
         {CardArray.map((event) => (
           <div className="hover:bg-tertiary shadow-sm ">
             <button className="mt-5 ml-5 mr-5">
               <h1 className="font-bold">{event.title}</h1>
 
               <h2 className="">{event.date}</h2>
+              {moment().startOf("hour").fromNow()}
             </button>
           </div>
         ))}
