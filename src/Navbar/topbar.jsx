@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+
 import { CiSearch } from "react-icons/ci";
 import { LiaToggleOnSolid } from "react-icons/lia";
 import { IoNotificationsCircle } from "react-icons/io5";
@@ -8,7 +9,6 @@ import { SlArrowDown } from "react-icons/sl";
 import Dropdown from "./dropdown";
 import Notification from "./notification";
 import Mmessage from "./message";
-import Center from "../components/center";
 
 const TopBar = () => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
@@ -29,13 +29,13 @@ const TopBar = () => {
 
   return (
     <>
-      <div className="bg-Clay h-28 w-screen text-primary sticky top-0  ">
+      <div className="bg-Clay h-28 w-[1200px] text-primary sticky top-0  ">
         <div className="flex p-4 justify-between">
           <div className="flex">
             <CiSearch className="mt-7 w-10 h-7 " />
 
             <input
-              className=" text-xl"
+              className=" text-xl  "
               placeholder="Type to search...."
               class="bg-Clay border-Clay py-2 px-3 "
             ></input>
@@ -71,7 +71,7 @@ const TopBar = () => {
               </button>
             </div>
             <button>
-              <IoPersonCircleSharp className="w-20 h-20" />
+              <IoPersonCircleSharp className="w-16 h-16" />
             </button>
             <div className="relative mt-7">
               <button>
@@ -83,9 +83,6 @@ const TopBar = () => {
               {isDropdownOpen && <Dropdown />}
             </div>
           </div>
-        </div>
-        <div className="">
-          <Center />
         </div>
       </div>
     </>

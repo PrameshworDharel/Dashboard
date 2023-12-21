@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import { FaReact } from "react-icons/fa";
 import { CgMenuGridO } from "react-icons/cg";
 import { SlArrowDown } from "react-icons/sl";
@@ -63,10 +64,12 @@ const SideBar = () => {
             <SlCalender className="w-4 h-6 " />
             <h1 className="ml-5">Calender</h1>
           </button>
+          <Link to="/profile">
           <button className="flex  mt-2  hover:bg-shadow py-2 px-3  w-56 rounded-sm  ">
             <IoPersonOutline className="w-4 h-6 " />
             <h1 className="ml-5">Profile</h1>
           </button>
+          </Link>
           <button className="flex hover:bg-shadow px-2 py-2  rounded-sm ">
             <CgMenuGridO className="w-7 h-5 mt-1" />
             <h1 className="ml-2">Task</h1>
