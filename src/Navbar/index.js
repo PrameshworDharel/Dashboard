@@ -5,7 +5,7 @@ import TopBar from "./topbar";
 const Homepage = () => {
   return (
     <>
-      <div className=" ">
+      <div className="flex">
         <SideBar />
         <TopBar />
       </div>

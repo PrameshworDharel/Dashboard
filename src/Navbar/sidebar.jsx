@@ -8,12 +8,12 @@ import { IoPersonOutline } from "react-icons/io5";
 const SideBar = () => {
   return (
     <>
-      <div className="bg-secondary w-[275px] p-5 flex-col  top-0 left-0 h-screen  ">
+      <div className="bg-secondary w-[300px] p-5    top-0 left-0 ">
         <div className="flex ">
           <FaReact className="h-10 w-10" />
           <h1 className="font-bold text-3xl">TailAdmin</h1>
         </div>
-        <div className="mt-20">
+        <div className="mt-20 ">
           <h1 className="font-bold text-Mirage">MENU</h1>
         </div>
         <div className="p-4  ">
@@ -82,8 +82,25 @@ const SideBar = () => {
             </button>
           </button>
           <div className="">
-          <h1 className="font-bold text-Mirage mt-5 ml-3 ">OTHERS</h1>
+            <h1 className="font-bold text-Mirage mt-5 ml-3 ">OTHERS</h1>
           </div>
+          <button className="flex mt-5 hover:bg-shadow px-2 py-2  rounded-sm ">
+            <CgMenuGridO className="w-7 h-5 mt-1" />
+            <h1 className="ml-2">Chart</h1>
+
+            <SlArrowDown className="ml-32 mt-1" />
+          </button>
+          <button className="flex  hover:bg-shadow px-2 py-2  rounded-sm ">
+            <CgMenuGridO className="w-7 h-5 mt-1" />
+            <h1 className="ml-1">UIElements</h1>
+            <SlArrowDown className=" ml-24 mt-1" />
+          </button>
+          <button className="flex  hover:bg-shadow px-2 py-2  rounded-sm ">
+            <CgMenuGridO className="w-7 h-5 mt-1" />
+            <h1 className="ml-2">Authentication</h1>
+
+            <SlArrowDown className="ml-16 mt-1" />
+          </button>
         </div>
       </div>
     </>
