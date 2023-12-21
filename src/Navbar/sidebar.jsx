@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { FaReact } from "react-icons/fa";
 import { CgMenuGridO } from "react-icons/cg";
 import { SlArrowDown } from "react-icons/sl";
@@ -6,6 +6,10 @@ import { SlArrowDown } from "react-icons/sl";
 import { SlCalender } from "react-icons/sl";
 import { IoPersonOutline } from "react-icons/io5";
 const SideBar = () => {
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const handleDropdownClick = () => {
+    setIsDropdownOpen(!isDropdownOpen);
+  };
   return (
     <>
       <div className="bg-secondary w-[300px]   ">
@@ -17,12 +21,44 @@ const SideBar = () => {
           <h1 className="font-bold text-Mirage ml-5 ">MENU</h1>
         </div>
         <div className="p-4  ">
-          <button className="flex hover:bg-shadow px-2 py-2  rounded-sm ">
-            <CgMenuGridO className="w-7 h-5 mt-1" />
-            <h1 className="ml-2">DashBoard</h1>
+          <div>
+            <div>
+              <button
+                className="flex hover:bg-shadow px-2 py-2  rounded-sm  "
+                onClick={handleDropdownClick}
+              >
+                <CgMenuGridO className="w-7 h-5 mt-1" />
+                <h1 className="ml-2">DashBoard</h1>
 
-            <SlArrowDown className="ml-20 mt-1" />
-          </button>
+                <SlArrowDown className="ml-20 mt-1  " />
+              </button>
+              {isDropdownOpen && (
+                <div className="mt-2">
+                  <button className="ml-10  hover:text-primary">
+                    eCommerce
+                  </button>
+                  <button className="flex mt-5">
+                    <h1 className="ml-10 hover:text-primary">Analytics</h1>
+                    <button className="bg-Mirage text-primary px-2 ml-20">
+                      Pro
+                    </button>
+                  </button>
+                  <button className="flex mt-5">
+                    <h1 className="ml-10  hover:text-primary">Marketing</h1>
+                    <button className="bg-Mirage text-primary px-2 ml-[70px]">
+                      Pro
+                    </button>
+                  </button>
+                  <button className="flex mt-5">
+                    <h1 className="ml-10 hover:text-primary">CRM</h1>
+                    <button className="bg-Mirage text-primary px-2 ml-[110px]">
+                      Pro
+                    </button>
+                  </button>
+                </div>
+              )}
+            </div>
+          </div>
           <button className="flex  mt-2 bg-shadow w-56 py-2 px-3 rounded-sm ">
             <SlCalender className="w-4 h-6 " />
             <h1 className="ml-5">Calender</h1>
