@@ -1,5 +1,4 @@
 import React from "react";
-
 import { useState } from "react";
 import { FaRegEdit } from "react-icons/fa";
 import { MdDelete } from "react-icons/md";
@@ -52,6 +51,52 @@ const data = [
 ];
 const Center = () => {
   const [isEditModelOpen, setIsEditModelOpen] = useState(false);
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    status: "",
+  });
+  const [formErrors, setFormErrors] = useState({});
+
+  const validateForm = () => {
+    const errors = {};
+
+    if (!formData.name.trim()) {
+      errors.name = "Name is required.";
+    }
+    if (!formData.email.trim()) {
+      errors.email = "Email is required.";
+    }
+    if (!formData.status.trim()) {
+      errors.status = "Status is required.";
+    }
+    setFormErrors(errors);
+    return Object.keys(errors).length === 0;
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (validateForm()) {
+
+      console.log("Form submitted successfully!");
+
+      setFormData({
+        name: "",
+        email: "",
+        status: "",
+      });
+
+      setIsEditModelOpen(false);
+    }
+  };
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }));
+  };
 
   return (
     <>
@@ -99,30 +144,46 @@ const Center = () => {
             closeModal={() => setIsEditModelOpen(!isEditModelOpen)}
           >
             <div className="  w-[450px] p-10">
-              <form className="">
+              <form className="" onSubmit={handleSubmit}>
                 <div className="">
                   <label className=" mb-4">Name</label>
-                  <input type="text" name="" className=" ml-10 px-3 py-3" />
+                  <input type="text" name="name" className=" ml-10 px-3 py-3"
+                    value={formData.name}
+                    onChange={handleChange} />
+                  {formErrors.name && (
+                    <span className="text-Red ml-20 mt-2">{formErrors.name}</span>
+                  )}
                 </div>
                 <div className="mt-5">
                   <label className=" mb-4">Gmail</label>
                   <input
                     type="email"
                     name="email"
+                    value={formData.email}
+                    onChange={handleChange}
                     className=" ml-10 px-3 py-3"
                   />
+
+                  {formErrors.email && (
+                    <span className="text-Red ml-20 mt-2">{formErrors.email}</span>
+                  )}
                 </div>
                 <div className="mt-5">
                   <label className=" mb-4">Status</label>
                   <input
                     type="text"
                     name="status"
+                    value={formData.status}
+                    onChange={handleChange}
                     className=" ml-10 px-3 py-3"
                   />
+                  {formErrors.status && (
+                    <span className="text-Red ml-20 mt-2">{formErrors.status}</span>
+                  )}
                 </div>
 
                 <div className="mt-10">
-                  <button className="bg-tertiary ml-32 px-5 py-2 ">
+                  <button type="submit" className="bg-tertiary ml-32 px-5 py-2 ">
                     Update
                   </button>
                 </div>
