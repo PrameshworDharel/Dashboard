@@ -29,7 +29,7 @@ const TopBar = () => {
 
   return (
     <>
-      <div className="bg-Clay h-28 w-[1200px] text-primary sticky top-0  ">
+      <div className="bg-Clay h-28 w-[1200px] text-primary sticky top-0 z-[999] ">
         <div className="flex p-4 justify-between">
           <div className="flex">
             <CiSearch className="mt-7 w-10 h-7 " />

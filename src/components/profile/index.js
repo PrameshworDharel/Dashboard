@@ -2,6 +2,7 @@ import React from "react";
 import SideBar from "../../Navbar/sidebar";
 import TopBar from "../../Navbar/topbar";
 import Profile1 from "./profile";
+
 const Profilepage = () => {
   return (
     <>
