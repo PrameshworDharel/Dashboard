@@ -30,7 +30,6 @@ const Center = () => {
   const [isEditModelOpen, setIsEditModelOpen] = useState(false);
   const [isAddModelOpen, setIsAddModelOpen] = useState(false);
   const [formData, setFormData] = useState({
-    id: null,
     name: "",
     email: "",
     status: "",
@@ -88,41 +87,12 @@ const Center = () => {
       setData((prevData) => [...prevData, newData]);
 
       setFormData({
-        id: null,
         name: "",
         email: "",
         status: "",
       });
 
       setIsAddModelOpen(false);
-    }
-  };
-
-  const handleEditSubmit = (e) => {
-    e.preventDefault();
-
-    if (validateForm()) {
-      const updatedData = data.map((item) =>
-        item.id === formData.id
-          ? {
-            ...item,
-            name: formData.name,
-            email: formData.email,
-            Status: formData.status,
-          }
-          : item
-      );
-
-      setData(updatedData);
-
-      setFormData({
-        id: null,
-        name: "",
-        email: "",
-        status: "",
-      });
-
-      setIsEditModelOpen(false);
     }
   };
 
@@ -136,23 +106,11 @@ const Center = () => {
 
   const handleCancelEdit = () => {
     setFormData({
-      id: null,
       name: "",
       email: "",
       status: "",
     });
     setIsEditModelOpen(false);
-  };
-
-  const handleEditClick = (id) => {
-    const selectedData = data.find((item) => item.id === id);
-    setFormData({
-      id: selectedData.id,
-      name: selectedData.name,
-      email: selectedData.email,
-      status: selectedData.Status,
-    });
-    setIsEditModelOpen(true);
   };
 
   return (
@@ -261,10 +219,15 @@ const Center = () => {
                   <td>{val.email}</td>
                   <td>{val.Status}</td>
                   <td className="flex gap-5">
-                    <button onClick={() => handleEditClick(val.id)}>
+                    <button
+                      onClick={() => setIsEditModelOpen(!isEditModelOpen)}
+                    >
                       <FaRegEdit />
                     </button>
-                    <button type="button" className="">
+                    <button
+                      type="button"
+                      className=""
+                    >
                       <MdDelete />
                     </button>
                   </td>
@@ -276,65 +239,7 @@ const Center = () => {
             isOpen={isEditModelOpen}
             closeModal={() => setIsEditModelOpen(false)}
           >
-            <div className="w-[450px] p-10">
-              <form onSubmit={handleEditSubmit}>
-                <div className="">
-                  <label className="mb-4">Name</label>
-                  <input
-                    type="text"
-                    name="name"
-                    className="ml-10 px-3 py-3"
-                    value={formData.name}
-                    onChange={handleChange}
-                  />
-                  {formErrors.name && (
-                    <span className="text-Red ml-20 mt-2">{formErrors.name}</span>
-                  )}
-                </div>
-                <div className="mt-5">
-                  <label className="mb-4">Gmail</label>
-                  <input
-                    type="email"
-                    name="email"
-                    value={formData.email}
-                    onChange={handleChange}
-                    className="ml-10 px-3 py-3"
-                  />
-                  {formErrors.email && (
-                    <span className="text-Red ml-20 mt-2">{formErrors.email}</span>
-                  )}
-                </div>
-                <div className="mt-5">
-                  <label className="mb-4">Status</label>
-                  <input
-                    type="text"
-                    name="status"
-                    value={formData.status}
-                    onChange={handleChange}
-                    className="ml-10 px-3 py-3"
-                  />
-                  {formErrors.status && (
-                    <span className="text-Red ml-20 mt-2">{formErrors.status}</span>
-                  )}
-                </div>
-
-                <div className="flex gap-2 mt-10">
-                  <button
-                    type="submit"
-                    className="bg-tertiary ml-32 px-5 py-2"
-                  >
-                    Update
-                  </button>
-                  <button
-                    type="button"
-                    onClick={() => setIsEditModelOpen(false)}
-                    className="bg-tertiary px-5 py-2"
-                  >
-                    Cancel
-                  </button>
-                </div>
-              </form>
-            </div>
+           
           </MyModal>
         </div>
       </div>
