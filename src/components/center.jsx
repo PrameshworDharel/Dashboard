@@ -1,7 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react"
+import axios from "axios";
 import { FaRegEdit } from "react-icons/fa";
 import { MdDelete } from "react-icons/md";
 import MyModal from "./profile/demo";
+import { v4 as uuid } from 'uuid';
+
 
 const CardCenter = [
   {
@@ -29,33 +32,30 @@ const CardCenter = [
 const Center = () => {
   const [isEditModelOpen, setIsEditModelOpen] = useState(false);
   const [isAddModelOpen, setIsAddModelOpen] = useState(false);
+  const [data, setData] = useState([
+
+  ]);
   const [formData, setFormData] = useState({
-    id: null,
+    id: uuid(),
     name: "",
     email: "",
     status: "",
   });
   const [formErrors, setFormErrors] = useState({});
-  const [data, setData] = useState([
-    {
-      id: 1,
-      name: "Prameshwor Dharel",
-      email: "2058dharel@gmail.com",
-      Status: "Pending",
-    },
-    {
-      id: 2,
-      name: "Prameshwor Dharel",
-      email: "2058dharel@gmail.com",
-      Status: "Pending",
-    },
-    {
-      id: 3,
-      name: "Prameshwor Dharel",
-      email: "2058dharel@gmail.com",
-      Status: "Pending",
-    },
-  ]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get("http://localhost:5000/users");
+        setData(response.data);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    };
+
+
+    fetchData();
+  }, []);
 
   const validateForm = () => {
     const errors = {};
@@ -74,28 +74,38 @@ const Center = () => {
     return Object.keys(errors).length === 0;
   };
 
+
+  const senddata = async () => {
+    try {
+      const response = await axios.post("http://localhost:5000/users/", formData);
+      setData([...data, response.data]);
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    }
+  }
+
   const handleAddSubmit = (e) => {
     e.preventDefault();
-
     if (validateForm()) {
       const newData = {
-        id: data.length + 1,
+        id: uuid(),
         name: formData.name,
         email: formData.email,
         Status: formData.status,
       };
-
       setData((prevData) => [...prevData, newData]);
-
       setFormData({
-        id: null,
+        id: uuid(),
         name: "",
         email: "",
         status: "",
       });
-
-      setIsAddModelOpen(false);
     }
+    senddata()
+
+
+
+    setIsAddModelOpen(false);
   };
 
   const handleEditSubmit = (e) => {
@@ -112,6 +122,7 @@ const Center = () => {
           }
           : item
       );
+
 
       setData(updatedData);
 
@@ -153,6 +164,10 @@ const Center = () => {
       status: selectedData.Status,
     });
     setIsEditModelOpen(true);
+  };
+  const handleDelete = (id) => {
+    const updatedData = data.filter((item) => item.id !== id);
+    setData(updatedData);
   };
 
   return (
@@ -244,8 +259,8 @@ const Center = () => {
 
         <div className="mt-10 flex justify-center">
           <table className="bg-shadow border w-[900px]">
-            <thead>
-              <tr className="flex justify-between p-3">
+            <thead className="border">
+              <tr className="flex justify-between p-3 ">
                 <th>#</th>
                 <th>Name</th>
                 <th>Email</th>
@@ -254,8 +269,8 @@ const Center = () => {
               </tr>
             </thead>
             <tbody>
-              {data.map((val) => (
-                <tr key={val.id} className="flex justify-between p-2">
+              {data?.map((val) => (
+                <tr key={val.id} className="flex justify-between  p-2">
                   <td>{val.id}</td>
                   <td>{val.name}</td>
                   <td>{val.email}</td>
@@ -264,7 +279,7 @@ const Center = () => {
                     <button onClick={() => handleEditClick(val.id)}>
                       <FaRegEdit />
                     </button>
-                    <button type="button" className="">
+                    <button onClick={() => handleDelete(val.id)} type="button" className="">
                       <MdDelete />
                     </button>
                   </td>
