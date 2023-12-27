@@ -82,7 +82,14 @@ const Center = () => {
     } catch (error) {
       console.error("Error fetching data:", error);
     }
-  }
+  };
+  const updateDataOnServer = async () => {
+    try {
+      await axios.put(`http://localhost:5000/users/${formData.id}`, formData);
+    } catch (error) {
+      console.error("Error updating data:", error);
+    }
+  };
 
   const handleAddSubmit = (e) => {
     e.preventDefault();
@@ -91,7 +98,7 @@ const Center = () => {
         id: uuid(),
         name: formData.name,
         email: formData.email,
-        Status: formData.status,
+        status: formData.status,
       };
       setData((prevData) => [...prevData, newData]);
       setFormData({
@@ -108,6 +115,7 @@ const Center = () => {
     setIsAddModelOpen(false);
   };
 
+
   const handleEditSubmit = (e) => {
     e.preventDefault();
 
@@ -118,7 +126,7 @@ const Center = () => {
             ...item,
             name: formData.name,
             email: formData.email,
-            Status: formData.status,
+            status: formData.status,
           }
           : item
       );
@@ -132,7 +140,7 @@ const Center = () => {
         email: "",
         status: "",
       });
-
+      updateDataOnServer();
       setIsEditModelOpen(false);
     }
   };
@@ -161,7 +169,7 @@ const Center = () => {
       id: selectedData.id,
       name: selectedData.name,
       email: selectedData.email,
-      status: selectedData.Status,
+      status: selectedData.status,
     });
     setIsEditModelOpen(true);
   };
@@ -274,7 +282,7 @@ const Center = () => {
                   <td>{val.id}</td>
                   <td>{val.name}</td>
                   <td>{val.email}</td>
-                  <td>{val.Status}</td>
+                  <td>{val.status}</td>
                   <td className="flex gap-5">
                     <button onClick={() => handleEditClick(val.id)}>
                       <FaRegEdit />
