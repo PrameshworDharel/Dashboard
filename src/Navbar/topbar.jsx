@@ -26,24 +26,32 @@ const TopBar = () => {
   const handleMessageClick = () => {
     setMessage(!message);
   };
+  const [isRotated, setIsRotated] = useState(false);
+  const handleButtonClick = () => {
+    setIsRotated((prevIsRotated) => !prevIsRotated);
+  };
 
   return (
     <>
       <div className="bg-Clay h-28 w-[1200px] text-primary sticky top-0 z-[999] ">
         <div className="flex p-4 justify-between">
           <div className="flex">
-            <CiSearch className="mt-7 w-10 h-7 " />
+            <CiSearch className="mt-5 w-10 h-7 " />
 
             <input
               className=" text-xl  "
-              placeholder="Type to search...."
-              class="bg-Clay border-Clay py-2 px-3 "
+              type="text"
+              placeholder="Type to search..."
+              class="w-full bg-Clay pl-9 pr-4 font-medium focus:outline-none xl:w-125 "
+              autocomplete="off"
             ></input>
           </div>
 
           <div className="flex gap-10">
-            <button>
-              <LiaToggleOnSolid className="w-10 h-10 bg-Clay" />
+            <button onClick={handleButtonClick}>
+              <LiaToggleOnSolid
+                className={`w-10 h-10 bg-Clay mt-5 ${isRotated ? 'rotate-180' : ''}`}
+              />
             </button>
             <div className="relative mt-5">
               <button>

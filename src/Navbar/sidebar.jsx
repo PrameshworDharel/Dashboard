@@ -8,9 +8,14 @@ import { SlCalender } from "react-icons/sl";
 import { IoPersonOutline } from "react-icons/io5";
 const SideBar = () => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+
   const handleDropdownClick = () => {
     setIsDropdownOpen(!isDropdownOpen);
   };
+  const handlesSetClick = () => {
+    setIsText(!isText);
+  };
+  const [isText, setIsText] = useState(false);
   return (
     <>
       <div className="bg-secondary w-[300px]   ">
@@ -36,9 +41,8 @@ const SideBar = () => {
                 <h1 className="ml-2">DashBoard</h1>
 
                 <SlArrowDown
-                  className={`ml-20 mt-1 duration-300  ${
-                    isDropdownOpen ? "rotate-180" : "rotate-0"
-                  }`}
+                  className={`ml-20 mt-1 duration-300  ${isDropdownOpen ? "rotate-180" : "rotate-0"
+                    }`}
                 />
               </button>
               {isDropdownOpen && (
@@ -82,12 +86,32 @@ const SideBar = () => {
               <h1 className="ml-5">Profile</h1>
             </button>
           </Link>
-          <button className="flex hover:bg-shadow px-2 py-2  rounded-sm ">
+          <button className="flex hover:bg-shadow px-2 py-2  rounded-sm " onClick={handlesSetClick}>
             <CgMenuGridO className="w-7 h-5 mt-1" />
             <h1 className="ml-2">Task</h1>
 
-            <SlArrowDown className="ml-32 mt-1" />
+            <SlArrowDown
+              className={`ml-[125px] mt-1 duration-300  ${isText ? "rotate-180" : "rotate-0"
+                }`}
+            />
           </button>
+          {isText && (
+            <div className=" mt-5">
+              <button className="flex">
+                <h1 className="ml-10 hover:text-primary">List</h1>
+                <button className="bg-Mirage text-primary px-2 ml-[120px]">
+                  Pro
+                </button>
+              </button>
+
+              <button className="flex mt-5">
+                <h1 className="ml-10  hover:text-primary">Kanban</h1>
+                <button className="bg-Mirage text-primary px-2 ml-[90px]">
+                  Pro
+                </button>
+              </button>
+            </div>
+          )}
           <button className="flex hover:bg-shadow px-2 py-2  rounded-sm ">
             <CgMenuGridO className="w-7 h-5 mt-1" />
             <h1 className="ml-2">Forms</h1>

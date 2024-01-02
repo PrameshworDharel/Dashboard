@@ -3,6 +3,7 @@ import axios from "axios";
 import { FaRegEdit } from "react-icons/fa";
 import { MdDelete } from "react-icons/md";
 import MyModal from "./profile/demo";
+import BarPage from "./Chart/Chart"
 import { v4 as uuid } from 'uuid';
 
 
@@ -360,6 +361,11 @@ const Center = () => {
             </div>
           </MyModal>
         </div>
+        <div className="mt-10">
+          <BarPage />
+        </div>
+
+
       </div>
     </>
   );
