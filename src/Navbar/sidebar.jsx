@@ -20,7 +20,7 @@ const SideBar = () => {
     <>
       <div className="bg-secondary w-[300px]   ">
         <Link to="/">
-          <div className="flex sticky top-0 pt-[40px] overflow-auto bg-secondary">
+          <div className="flex sticky top-0 pt-[40px] overflow-auto bg-secondary z-50">
             <FaReact className="h-10 w-10" />
             <h1 className="font-bold text-3xl">TailAdmin</h1>
           </div>
@@ -112,12 +112,14 @@ const SideBar = () => {
               </button>
             </div>
           )}
-          <button className="flex hover:bg-shadow px-2 py-2  rounded-sm ">
-            <CgMenuGridO className="w-7 h-5 mt-1" />
-            <h1 className="ml-2">Forms</h1>
+          <Link to="/forms">
+            <button className="flex hover:bg-shadow px-2 py-2  rounded-sm ">
+              <CgMenuGridO className="w-7 h-5 mt-1" />
+              <h1 className="ml-2">Forms</h1>
 
-            <SlArrowDown className="ml-28 mt-1" />
-          </button>
+              <SlArrowDown className="ml-28 mt-1" />
+            </button>
+          </Link>
           <button className="flex  mt-2  hover:bg-shadow py-2 px-3  w-56 rounded-sm  ">
             <IoPersonOutline className="w-4 h-6 " />
             <h1 className="ml-5">Tables</h1>
